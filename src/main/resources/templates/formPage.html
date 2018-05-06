@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="layoutDB :: head"></head>
+
+<body>
+	<div th:replace="layoutDB :: header"></div>
+
+	<div class="page-content">
+		<div class="row">
+			<div class="col-md-2">
+				<div th:replace="layoutDB :: navVertical"></div>
+			</div>
+			<div class="col-md-10">
+                <form action="#" th:action="@{/formPageSave}" method="post">
+					<input type="hidden" th:value="${page.header}" name="header"  />
+					<input type="hidden" />
+                    <div class="content-box-large">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h2 th:text="${page.header}"></h2>
+                            </div>
+                        </div>
+
+
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label for="email">Title:</label>
+                                <input class="form-control" th:value="${page.title}"  id="title" placeholder="Enter title" name="title">
+                            </div>
+                            <div class="form-group">
+                                <label for="ckeditor_full">Content:</label>
+                                <textarea id="ckeditor_full" th:text="${page.content}" name="content"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+		</div>
+	</div>
+
+	<footer th:replace="layoutDB :: footer"></footer>
+
+	<link rel="stylesheet" type="text/css" th:href="@{/vendors/bootstrap-wysihtml5/src/bootstrap-wysihtml5.css}"></link>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}" ></script>
+
+    <script th:src="@{/vendors/bootstrap-wysihtml5/lib/js/wysihtml5-0.3.0.js}" ></script>
+    <script th:src="@{/vendors/bootstrap-wysihtml5/src/bootstrap-wysihtml5.js}"></script>
+
+    <script th:src="@{/vendors/ckeditor/ckeditor.js}"></script>
+    <script th:src="@{/vendors/ckeditor/adapters/jquery.js}"></script>
+
+    <script type="text/javascript" th:src="@{/vendors/tinymce/js/tinymce/tinymce.min.js}"></script>
+
+    <script th:src="@{/js/custom.js}" ></script>
+    <script th:src="@{/js/editors.js}"></script>
+</body>
+
+</html>

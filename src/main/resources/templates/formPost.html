@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="layoutDB :: head"></head>
+
+<body>
+	<div th:replace="layoutDB :: header"></div>
+
+	<div class="page-content">
+		<div class="row">
+			<div class="col-md-2">
+				<div th:replace="layoutDB :: navVertical"></div>
+			</div>
+			<div class="col-md-10">
+				<form action="#" th:action="@{/formPostSave}" th:object="${post}"
+					method="post" enctype="multipart/form-data">
+					<input type="hidden" th:field="*{id}" />
+					<div class="content-box-large">
+						<div class="panel-heading">
+							<div class="panel-title">
+								<h2>New Post</h2>
+							</div>
+						</div>
+
+
+						<div class="panel-body">
+							<div class="form-group">
+								<label for="title">Title:</label> <input class="form-control"
+									th:field="*{title}" id="title" placeholder="Enter title"
+									name="title">
+							</div>
+							<div class="form-group">
+								<label for="subtitle">Subtitle:</label> <input
+									class="form-control" th:field="*{subtitle}" id="subtitle"
+									placeholder="Enter subtitle" name="subtitle">
+							</div>
+							<div class="form-group">
+								<label for="ckeditor_full">Content:</label>
+								<textarea id="ckeditor_full" th:field="*{content}"
+									name="content"></textarea>
+							</div>
+
+							<!-- <div class="form-group">
+								<label for="file">Attached file:</label> <input
+									class="form-control" type="file" id="file" name="file">
+							</div> -->
+
+							<div th:if="${fileAWS}"  class="panel panel-default">
+								<div class="panel-heading"><strong>Current attached file</strong></div>
+								<div class="panel-body"><a th:href="${fileAWS.linkdownload}" th:text="${fileAWS.name}"></a></div>
+							</div>
+
+							<label class="btn btn-default btn-file"><strong> Browse <span  th:if="${fileAWS}">new file</span></strong><input
+								type="file" name="file">
+							</label> <br />
+							<br />
+
+							<button type="submit" class="btn btn-default">Submit</button>
+
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layoutDB :: footer"></footer>
+
+	<link rel="stylesheet" type="text/css"
+		th:href="@{/vendors/bootstrap-wysihtml5/src/bootstrap-wysihtml5.css}"></link>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<!-- jQuery UI -->
+	<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+	<script
+		th:src="@{/vendors/bootstrap-wysihtml5/lib/js/wysihtml5-0.3.0.js}"></script>
+	<script
+		th:src="@{/vendors/bootstrap-wysihtml5/src/bootstrap-wysihtml5.js}"></script>
+
+	<script th:src="@{/vendors/ckeditor/ckeditor.js}"></script>
+	<script th:src="@{/vendors/ckeditor/adapters/jquery.js}"></script>
+
+	<script type="text/javascript"
+		th:src="@{/vendors/tinymce/js/tinymce/tinymce.min.js}"></script>
+
+	<script th:src="@{/js/custom.js}"></script>
+	<script th:src="@{/js/editors.js}"></script>
+</body>
+
+</html>

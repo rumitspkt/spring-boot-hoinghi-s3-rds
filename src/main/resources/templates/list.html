@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="layoutDB :: head"></head>
+
+<body>
+	<div th:replace="layoutDB :: header"></div>
+
+	<div class="page-content">
+		<div class="row">
+			<div class="col-md-2">
+				<div th:replace="layoutDB :: navVertical"></div>
+			</div>
+			<div class="col-md-10">
+				<th:block th:if="${#lists.isEmpty(posts)}">
+					<h3>No post</h3>
+				</th:block>
+
+				<th:block th:unless="${#lists.isEmpty(posts)}">
+					<div th:each="post,iterStat : ${posts}" class="row">
+						<div class="col-md-12 panel-info">
+							<div class="content-box-header panel-heading">
+								<div th:text="${post.title}" class="panel-title "></div>
+
+								<div class="panel-options">
+									<a th:href="@{/post/{id}/edit(id = ${post.id})}"
+										data-rel="collapse"> <i class="glyphicon glyphicon-edit"></i>
+									</a> <a th:href="@{/post/{id}/delete(id = ${post.id})}"
+										data-rel="reload"> <i class="glyphicon glyphicon-remove"></i>
+									</a>
+								</div>
+							</div>
+							<div class="content-box-large box-with-header"
+								th:utext="${#strings.abbreviate(post.content,200)}">
+								<br />
+								<br />
+							</div>
+
+						</div>
+					</div>
+				</th:block>
+
+
+
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layoutDB :: footer"></footer>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/custom.js}"></script>
+</body>
+
+</html>

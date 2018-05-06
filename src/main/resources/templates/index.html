@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head th:replace="layout :: head"></head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav th:replace="layout :: header"></nav>
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('img/about-bg.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>WELCOME TO ICSSE 2017</h1>
+              <span  class="subheading">System Science and Engineering has emerged as a research field that covers a wide spectrum of modern technology. A system can be considered as a collection of entities and their interrelationships gathered together to form a whole greater than the sum of the entities. It also involves people, organizations, cultures, activities and interrelationships among them. While systems composed of autonomous subsystems are not new, increased data density, connectivity and ubiquitous computational resources have increased their interdependence and interaction complexity. This has in turn made the already difficult job of planning, developing and deploying complex systems even more difficult.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-16">
+        
+        <th:block th:if="${#lists.isEmpty(posts)}">
+			<h3>No post</h3>
+		</th:block>
+        
+        <th:block th:unless="${#lists.isEmpty(posts)}">
+          <div th:each="post,iterStat : ${posts}" class="post-preview">
+            <a th:href="@{/post/{id}(id = ${post.id})}">
+              <h2 th:text="${post.title}" class="post-title"></h2>
+              <h3 th:text="${post.subtitle}" class="post-subtitle"></h3>
+            </a>
+            <p class="post-meta">Posted by
+              <a href="#">rum</a></p>
+          </div>
+          <hr>
+         </th:block>
+          
+          <!-- Pager -->
+          <div class="clearfix">
+            <a class="btn btn-success float-right" href="#">Older Posts &rarr;</a>
+          </div>
+        </div>   
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer th:replace="layout :: footer"></footer>
+
+   <!-- Bootstrap core JavaScript -->
+    <script th:src="@{/vendor/jquery/jquery.min.js}" ></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+    <!-- Custom scripts for this template -->
+    <script th:src="@{/js/clean-blog.min.js}"></script>
+
+  </body>
+
+</html>

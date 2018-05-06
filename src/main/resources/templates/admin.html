@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="layoutDB :: head"></head>
+
+<body>
+	<div th:replace="layoutDB :: header"></div>
+
+	<div class="page-content">
+		<div class="row">
+			<div class="col-md-2">
+				<div th:replace="layoutDB :: navVertical"></div>
+			</div>
+			<div class="col-md-10">
+				<div th:if="${success}"
+					class="row alert alert-success alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<span th:text="${success}"></span>
+				</div>
+				<div class="jumbotron">
+					<h1>
+						Welcome you, <span th:text="${admin.username}"></span>!
+					</h1>
+					<p>What's new?</p>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layoutDB :: footer"></footer>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/custom.js}"></script>
+</body>
+
+</html>
